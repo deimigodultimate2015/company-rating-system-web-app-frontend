@@ -1,0 +1,186 @@
+<div class="row">
+  <div class="col-5">
+    <div class="card">
+      <div class="card-body image-card-body">
+        <img src="https://res.cloudinary.com/dyglkqkac/image/upload/v{{cloudinary.version}}/{{cloudinary.staffId}}.{{cloudinary.type}}" alt="">
+        <button class="btn btn-success btn-sm btn-upload-img " data-toggle="modal" data-target="#uploadImageModal">{{'button.uploadImage' | translate}}</button>
+      </div>
+      <div class="card-footer">
+        <h4>{{staff.name}}</h4>
+        <div>{{'search.sorting.staff.ID' | translate}}: {{staff.id}}</div>
+        <div>{{'table.th.status' | translate}}:
+          <span *ngIf="staff.active" class="badge badge-success">Active</span>
+          <span *ngIf="!staff.active " class="badge badge-danger">Inactive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-7">
+    <div class="card">
+      <div class="card-header">{{'button.details' | translate}}</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-4">
+            Email:
+          </div>
+          <div class="col-8">
+            {{staff.email}}
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-4">
+            {{'staff.details.phoneNumber' | translate}}:
+          </div>
+          <div class="col-8">
+            {{staff.phone}}
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-4">
+            {{'staff.details.gender' | translate}}:
+          </div>
+          <div class="col-8">
+            <span *ngIf="staff.gender">{{'staff.details.gender.male' | translate}}</span>
+            <span *ngIf="!staff.gender">{{'staff.details.gender.female' | translate}}</span>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-4">
+            {{'staff.details.birthday' | translate}}:
+          </div>
+          <div class="col-8">
+            {{staff.birthday}}
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-4">
+            {{'sidebar.depart' | translate}}:
+          </div>
+          <div class="col-8">
+            <span *ngIf="staff.depart">{{staff.depart.name}}</span>
+            <span *ngIf="!staff.depart">{{'staff.details.notJoinDepart' | translate}}</span>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-4">
+            {{'staff.details.salary' | translate}}:
+          </div>
+          <div class="col-8">
+            {{staff.salary}}
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-4">
+            {{'table.th.level' | translate}}:
+          </div>
+          <div class="col-8">
+            {{staff.level}}
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-4">
+            {{'staff.details.note' | translate}}:
+          </div>
+          <div class="col-8">
+            {{staff.notes}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col group-button-custom">
+            <button class="btn btn-success  btn-group-custom" (click)="editStaff()">{{'button.edit' | translate}}</button>
+            <button class="btn btn-success  btn-group-custom" data-toggle="modal" data-target="#ratingModal">{{'button.rating' | translate}}</button>
+            <button *ngIf="staff.active" class="btn btn-danger  btn-group-custom" (click)="disactiveStaff()">{{'button.inactive' | translate}}</button>
+            <button *ngIf="!staff.active" class="btn btn-success  btn-group-custom" (click)="activeStaff()">{{'button.active' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="ratingModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white">New Record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true text-white">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Reason</label>
+          <input type="text" class="form-control" [(ngModel)]="record.reason" name="record">
+        </div>
+
+        <div class="form-group">
+          Type
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" checked class="form-check-input" [(ngModel)]="record.type" value="false" name="type">Bad
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" [(ngModel)]="record.type" value="true" name="type">Good
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="text" placeholder="dd-MM-yyyy" class="form-control" [(ngModel)]="record.date " name="birthday" #birthday="ngModel" pattern="\d{1,2}-\d{1,2}-\d{4}" required="required">
+          <div class="text-danger" *ngIf="birthday.invalid">
+            <div *ngIf="birthday.errors.required">Staff born day is required</div>
+            <div *ngIf="birthday.errors.pattern">Date pattern is dd-MM-yyyy </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="createRecord()" data-dismiss="modal">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="uploadImageModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-white">Update image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true text-white">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="file" (change)="onFileSelected($event)" name="record">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" data-dismiss="modal">Upload image</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div *ngIf="uploadFailed" class="alert alert-danger">{{uploadFailedMess}}</div>
+    <div *ngIf="uploadSuccess" class="alert alert-success">{{uploadSuccessMess}}</div>
+  </div>
+</div>
+<app-staff-record-list [staffID]="staff.id"></app-staff-record-list>

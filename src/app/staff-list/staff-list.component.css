@@ -1,0 +1,27 @@
+.form-group {
+  display: inline-block;
+}
+
+.paginationCustom pagination-controls {
+  width: 70%;
+  margin: 0 auto;
+}
+
+/*table*/
+
+table td , button {
+  font-size: 15px;
+}
+
+td:last-child, th:last-child {
+  text-align: right;
+}
+
+table i {
+  margin-left: 20px;
+}
+
+table .info {
+  color: dimgray;
+}
+

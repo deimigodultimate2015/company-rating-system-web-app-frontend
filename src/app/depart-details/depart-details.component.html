@@ -1,0 +1,81 @@
+<div class="card">
+  <div class="card-header"><h4>{{departDetails.name}}</h4>
+    <button class="btn btn-success btn-sm" (click)="toEditDepart()">{{'button.edit' | translate}}</button>
+    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#departModal" *ngIf="departDetails.active">{{'button.depart.depart' | translate}}</button>
+    <button class="btn btn-success btn-sm" *ngIf="!departDetails.active" (click)="reactiveDepart()">{{'button.active' | translate}}</button>
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-2 depart-rating">
+          <h3>{{'table.dt.depart.score' | translate}}</h3>
+          <h1 class="text-danger" *ngIf="departDetails.rating < 0 && departDetails.totalStaffs != 0">{{departDetails.rating}}</h1>
+          <h1 class="text-success" *ngIf="departDetails.rating >= 0">{{departDetails.rating}}</h1>
+          <h1 class="text-success" *ngIf="departDetails.rating < 0 && departDetails.totalStaffs === 0">0</h1>
+        </div>
+        <div class="col-5">
+          <div class="depart-info">{{'table.dt.depart.totalStaff' | translate}}: {{departDetails.totalStaffs}}</div>
+          <div class="depart-info">{{'depart.details.goodStaffs' | translate}}: {{departDetails.goodStaffs}}</div>
+          <div class="depart-info">{{'depart.details.badStaffs' | translate}}: {{departDetails.badStaffs}}</div>
+        </div>
+        <div class="col-5">
+          <div class="depart-info">{{'table.dt.depart.totalRecord' | translate}}: {{departDetails.totalRecords}}</div>
+          <div class="depart-info">{{'depart.details.goodRecords' | translate}}: {{departDetails.goodRecords}}</div>
+          <div class="depart-info">{{'depart.details.badRecords' | translate}}: {{departDetails.badRecords}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="alert alert-danger" *ngIf="uploadFailed">{{uploadMessage}}</div>
+    <div class="alert alert-success" *ngIf="uploadSuccess">{{uploadMessage}}</div>
+  </div>
+</div>
+<!-- The Modal -->
+<div class="modal" id="departModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header bg-danger text-white">
+        <h4 class="modal-title">{{'depart.details.depart.header' | translate}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        {{'depart.details.depart.warning' | translate}}
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="disactiveDepart()" data-dismiss="modal" >{{'button.depart.depart' | translate}}</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'button.cancel' | translate}}</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="addStaffModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header bg-success text-white">
+        <h4 class="modal-title">{{'button.depart.addStaff' | translate}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        {{'search.sorting.staff.ID' | translate}}
+        <input type="number" class="form-control" [(ngModel)]="staffIDToAdd" name="staffIDToAdd">
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="addStaff()" data-dismiss="modal" >{{'button.depart.addStaff' | translate}}</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'button.cancel' | translate}}</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<app-depart-staff-list (reloadParentInfo)="reloadDepart()" [departID]="departDetails.id"></app-depart-staff-list>

@@ -1,0 +1,139 @@
+<div *ngIf="success; else addForm" class="success-div">
+
+  <div class="card">
+    <div class="card-body success-image">
+      <h3 *ngIf="!staff.id">Depart was adding successful, you can upload image at edit staff.</h3>
+      <h3 *ngIf="staff.id">Depart was Update successful</h3>
+      <button *ngIf="!staff.id" class="btn btn-success" (click)="addMore()">Add more</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #addForm>
+  <div class="card">
+    <div class="card-header">
+      <span *ngIf="staff.id">{{'sidebar.staff' | translate}} {{staff.id}}</span>
+      <span *ngIf="!staff.id">{{'button.depart.addStaff' | translate}}</span>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label>{{'table.th.name' | translate}}</label>
+              <input type="text" class="form-control" [(ngModel)]="staff.name" name="name" #name="ngModel" required="required" minlength="3">
+              <div class="text-danger" *ngIf="name.invalid">
+                <div *ngIf="name.errors.required">Name is required</div>
+                <div *ngIf="name.errors.minlength">Name must have at least 3 characters</div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="text" class="form-control" [(ngModel)]="staff.email" name="email" #email="ngModel" required="required" email>
+              <div class="text-danger" *ngIf="email.invalid">
+                <div *ngIf="email.errors.email">Staff email was invalid</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label>{{'staff.details.phoneNumber' | translate}}</label>
+              <input type="text" class="form-control" [(ngModel)]="staff.phone" name="phone" #phone="ngModel" required="required"
+              pattern="[0-9]{7,15}">
+              <div class="text-danger" *ngIf="phone.invalid">
+                <div *ngIf="phone.errors.required">Phone number is required</div>
+                <div *ngIf="phone.errors.pattern">Staff phone number must contain at least 7 and maximum is 15 number</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label>{{'staff.details.birthday' | translate}}</label>
+              <input type="text" placeholder="dd-MM-yyyy" class="form-control" [(ngModel)]="staff.birthday " name="birthday" #birthday="ngModel" pattern="\d{1,2}-\d{1,2}-\d{4}" required="required">
+              <div class="text-danger" *ngIf="birthday.invalid">
+                <div *ngIf="birthday.errors.required">Staff born day is required</div>
+                <div *ngIf="birthday.errors.pattern">Date pattern is dd-MM-yyyy </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label>{{'staff.details.salary' | translate}}</label>
+              <input type="number" class="form-control" min="0" [(ngModel)]="staff.salary" name="salary" #salary="ngModel" required="required">
+              <div class="text-danger" *ngIf="salary.invalid">
+                <div *ngIf="salary.errors.required">Salary is required</div>
+                <div *ngIf="salary.errors.min">Salary must bigger or equal 0</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <div>
+                <label>{{'staff.details.gender' | translate}}</label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" [(ngModel)]="staff.gender" [value]="false" name="gender">{{'staff.details.gender.female' | translate}}
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="radio"  class="form-check-input" [(ngModel)]="staff.gender" [value]="true" name="gender">{{'staff.details.gender.male' | translate}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            {{'sidebar.depart' | translate}}
+            <div class="form-group">
+              <select class="form-control" id="searchForm" autocomplete="off" [(ngModel)]="staff.depart.id" name="departid">
+                <option *ngFor="let depart of departMKX" value="{{depart.id}}" >{{depart.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6">
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label>{{'staff.details.note' | translate}}</label>
+              <textarea [(ngModel)]="staff.notes" name="notes" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="error">
+          <div class="col">
+            <div class="alert alert-danger">
+              <strong>Add failed!</strong> {{message}}.
+            </div>
+          </div>
+        </div>
+
+        <div class="row group-button-custom">
+          <button type="submit" class="btn btn-success btn-group-custom">
+            <div *ngIf="staff.id">{{'button.update' | translate}}</div>
+            <div *ngIf="!staff.id">{{'button.depart.addStaff' | translate}}</div>
+          </button>
+          <button type="reset" class="btn btn-secondary btn-group-custom">{{'button.reset' | translate}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</ng-template>

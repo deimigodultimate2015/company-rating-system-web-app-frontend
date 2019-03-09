@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-header">
+    <div class="input-group search-tool">
+      <span class="input-group"></span>
+      <input type="text" class="form-control search-field" placeholder="" [(ngModel)]="searchData.search">
+      <button class="btn btn-primary btn-search" (click)="onSubmit()"><i class="fa-search fas"></i></button>
+    </div>
+    <div class="row">
+      <div class="col">
+        {{'search.sorting' | translate}}
+        <div class="form-group">
+          <select class="form-control" id="searchForm" [(ngModel)]="searchData.sort" (change)="onSubmit()" autocomplete="off" >
+            <option [attr.selected]="searchData.sort" value="id">{{'search.sorting.staff.ID' | translate}}</option>
+            <option value="name">{{'search.sorting.staff.Name' | translate}}</option>
+            <option value="level">{{'search.sorting.staff.level' | translate}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+
+    <table class="table table-curved">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>{{'table.th.name' | translate}}</th>
+        <th>Email</th>
+        <th>{{'table.th.level' | translate}}</th>
+        <th>{{'table.th.status' | translate}}</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let staff of staffs | paginate: {itemsPerPage: pageInfo.pageSize, currentPage: pageInfo.currentPage+1, totalItems: pageInfo.totalEntity}">
+        <td>{{staff.id}}</td>
+        <td>{{staff.name}}</td>
+        <td>{{staff.email}}</td>
+        <td>{{staff.level}}</td>
+        <td *ngIf="staff.active"><div class="badge badge-success">active</div></td>
+        <td *ngIf="!staff.active"><div class="badge badge-danger">Inactive</div></td>
+        <td><button class="btn btn-primary" (click)="toStaffDetails(staff)">{{'button.details'| translate }}</button></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+  </div>
+</div>

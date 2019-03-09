@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Top 10 staff list <i class="fas fa-star"></i></h4>
+  </div>
+  <div class="card-body">
+    <table class="table table-curved">
+      <tbody>
+      <td>
+        <div *ngFor="let staff of staffMKXs; let i = index">
+          <div class="row">
+            <div class="col-2 avatar-col">
+              <div *ngIf="!staff.cloudinary.staffId">
+                <img src="https://res.cloudinary.com/dyglkqkac/image/upload/v1550997259/notfound.png" class="rounded-circle" alt="">
+              </div>
+              <div *ngIf="staff.cloudinary.staffId">
+                <img src="https://res.cloudinary.com/dyglkqkac/image/upload/v{{staff.cloudinary.version}}/{{staff.cloudinary.staffId}}.{{staff.cloudinary.type}}" class="rounded-circle" alt="">
+              </div>
+              <h3><span class="badge badge-danger" *ngIf="i === 0">1nd</span>
+                <span class="badge badge-success" *ngIf="i === 1">2nd</span>
+                <span class="badge badge-success" *ngIf="i === 2">3rd</span>
+                <span class="badge badge-primary" *ngIf="i !== 0 && i !== 1 && i !== 2">{{i+1}}th</span></h3>
+            </div>
+            <div class="col-9">
+              <h3>{{staff.staff.name}}</h3>
+              <h5><span class="status-span"><i class="fas fa-arrow-up" style="color: #35B336"></i> Good record: {{staff.goodRating}}</span>
+                <span class="status-span"><i class="fas fa-arrow-down" style="color: #c0392b"></i> Bad record: {{staff.badRating}}</span>
+                <span class="status-span"><i class="fas fa-poll-h" style="color: cornflowerblue"></i> Final score: {{staff.score}}</span></h5>
+            </div>
+            <div class="col-1">
+            </div>
+          </div>
+          <hr>
+        </div>
+      </td>
+      </tbody>
+    </table>
+  </div>
+</div>

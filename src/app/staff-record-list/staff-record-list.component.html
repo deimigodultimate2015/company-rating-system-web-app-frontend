@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header">{{'sidebar.record' | translate}}</div>
+  <div class="card-body">
+
+    <table class="table table-curved">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>{{'table.th.type' | translate}}</th>
+        <th>{{'table.th.reason' | translate}}</th>
+        <th>{{'table.th.date' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let record of records | paginate: {itemsPerPage: pageInfo.pageSize, currentPage: pageInfo.currentPage+1, totalItems: pageInfo.totalEntity}">
+        <td>{{record.id}}</td>
+        <td *ngIf="record.type"><div class="badge badge-success">Good</div></td>
+        <td *ngIf="!record.type"><div class="badge badge-danger">Bad</div></td>
+        <td>{{record.reason}}</td>
+        <td>{{record.date}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+  </div>
+</div>

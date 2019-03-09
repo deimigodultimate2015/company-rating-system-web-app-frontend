@@ -1,20 +1,170 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<nav class="navbar navbar-expand-md">
+  <a class="navbar-brand py-0" href="https://www.facebook.com/thotx.1999">THOTXPS06695</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link py-0" (click)="homePageSelect()"><i class="fas fa-home"></i>{{ 'navbar.homepage' | translate }} <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link py-0" (click)="managerPageSelect()" *ngIf="checkLogin()"><i class="fas fa-cog"></i> {{ 'navbar.managerpage' | translate }}</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-right">
+      <li class="nav-item">
+        <div class="navbar-text py-0" role="button" (click)="changeToVi()">Vietnamese</div>
+      </li>
+      <li class="nav-item">
+        <div class="navbar-text py-0" role="button" (click)="changeToEn()">English</div>
+      </li>
+      <li class="nav-item">
+        <div class="navbar-text py-0" *ngIf="info.username"><i class="fas fa-user"></i> {{info.username}}</div>
+      </li>
+      <li class="nav-item" *ngIf="info.token">
+        <a href="" class="nav-link py-0" data-toggle="modal" data-target="#changeModal"><i class="fas fa-user-lock"></i> {{'change.header' | translate}}</a>
+      </li>
+      <li class="nav-item" *ngIf="info.token">
+        <a href="" class="nav-link py-0" (click)="logout()"><i class="fas fa-sign-out-alt"></i>{{'navbar.logout' | translate}}</a>
+      </li>
+      <li class="nav-item" *ngIf="!info.token">
+        <a role="button" class="nav-link py-0"  data-toggle="modal" data-target="#loginModal"><i class="fas fa-sign-out-alt"></i>{{'login.header' | translate}}</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
+<header id="header" *ngIf="!homePage">
+  <div class="container">
+    <h1><i class="fas fa-link"></i>{{currentComponent}}</h1>
+  </div>
+</header>
+
+<section id="main">
+  <div class="container">
+    <div *ngIf="!homePage">
+      <div class="row">
+        <div class="col-3">
+          <div class="dropdown">
+            <button class="side-menu-header-button btn dropdown-header-button btn-primary dropdown-toggle" style="width: 100%; text-align: left" data-toggle="dropdown"><i class="fas fa-plus"></i> {{'sidebar.new' | translate}}</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" routerLink="addDepart" role="button">{{'sidebar.new.depart' | translate}}</a>
+              <a class="dropdown-item" routerLink="addStaff" role="button">{{'sidebar.new.staff' | translate}}</a>
+              <a class="dropdown-item" routerLink="addUser" role="button">{{'sidebar.new.user' | translate}}</a>
+            </div>
+          </div>
+          <div class="list-group">
+            <a routerLink="departListing" role="button" routerLinkActive="active" class="list-group-item side-menu-item"><i class="fa-id-badge fas"></i> {{'sidebar.depart' | translate}} </a>
+            <a routerLink="staffListing" role="button" routerLinkActive="active" class="list-group-item side-menu-item"><i class="fa-users fas"></i>  {{'sidebar.staff' | translate}} </a>
+            <a routerLink="recordListing" role="button" routerLinkActive="active" class="list-group-item side-menu-item"><i class="fa-star fas"></i> {{'sidebar.record' | translate}} </a>
+            <a routerLink="userListing" role="button" routerLinkActive="active" class="list-group-item side-menu-item"><i class="fa-user fas"></i> {{'sidebar.user' | translate}} </a>
+          </div>
+        </div>
+        <div class="col-9" style="">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="homePage">
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+          <app-top10list></app-top10list>
+        </div>
+        <div class="col-1"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modal" id="loginModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">{{'login.header' | translate}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="!isLoginSuccess">
+          <div class="form-group">
+            <label><i class="fas fa-user"> </i>{{'login.body.username' | translate}}</label>
+            <input type="text" [(ngModel)]="loginInfo.username" name="username" class="form-control">
+            <br>
+            <label><i class="fas fa-key"></i> {{'login.body.password' | translate}}</label>
+            <input type="password" [(ngModel)]="loginInfo.password" name="password" class="form-control">
+            <div class="alert alert-danger" *ngIf="isLoginFailed">{{loginFailMess}}</div>
+            <hr>
+            <div class="form-group">
+              <button class="form-control btn btn-success login-button" (click)="login()">{{'login.header' | translate}}</button>
+              <button class="form-control btn btn-secondary login-button" data-toggle="modal" data-target="#forgotModal" data-dismiss="modal">{{'login.footer.forgotPassword' | translate}}</button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isLoginSuccess" class="success-image">
+          <img src="https://fsmedia.imgix.net/05/a9/aa/5c/261b/4afa/a99c/ac32c5c1b81e/vault-boy.png" alt="">
+          <h2>Login success</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="forgotModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">{{'login.footer.forgotPassword' | translate}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="!isLoginSuccess">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="text" [(ngModel)]="emailToResetPassword" name="emailToResetPassword" class="form-control">
+            <br>
+          </div>
+          <div class="form-group">
+            <button class="form-control btn btn-success login-button" (click)="resetPassword()" data-dismiss="modal">{{'forget.body.send' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="changeModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">{{'change.header' | translate}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div *ngIf="!isLoginSuccess">
+          <div class="form-group">
+            <label>{{'change.body.oldPass' | translate}}</label>
+            <input type="password" [(ngModel)]="changePassword.oldPassword" name="oldPass" class="form-control">
+            <br>
+            <label>{{'change.body.newPass' | translate}}</label>
+            <input type="password" [(ngModel)]="changePassword.newPassword" name="newPass" class="form-control">
+            <div class="alert alert-danger" *ngIf="isChangeFail">Change failed</div>
+            <hr>
+            <div class="form-group">
+              <button class="form-control btn btn-success login-button" (click)="letChangePassword()">{{'change.header' | translate}}</button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isLoginSuccess" class="success-image">
+          <img src="https://fsmedia.imgix.net/05/a9/aa/5c/261b/4afa/a99c/ac32c5c1b81e/vault-boy.png" alt="">
+          <h2>Change success</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

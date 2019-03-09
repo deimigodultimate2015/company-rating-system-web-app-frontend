@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-header">
+    <div class="input-group search-tool">
+      <span class="input-group"></span>
+      <input type="text" class="form-control search-field" placeholder="" [(ngModel)]="searchData.search">
+      <button class="btn btn-primary btn-search" (click)="onSubmit()"><i class="fa-search fas"></i></button>
+    </div>
+    <div class="row">
+      <div class="col">
+        {{'search.sorting' | translate}}
+        <div class="form-group">
+          <select class="form-control" id="searchForm" [(ngModel)]="searchData.sort" (change)="onSubmit()" >
+            <option [attr.selected]="searchData.sort" value="staffs">{{'search.sorting.depart.mostTotalStaffs' |  translate}}</option>
+            <option value="ratings">{{'search.sorting.depart.mostTotalRecords' |  translate}}</option>
+            <option value="score">{{'search.sorting.depart.highestRating' |  translate}}</option>
+            <option value="name">{{'search.sorting.depart.byName' |  translate}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col showing-record">
+        <input type="checkbox" value="showing details" [(ngModel)]="showDetails"> {{'search.showingDetails' | translate}}
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+
+    <table class="table table-curved">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let depart of departs | paginate: {itemsPerPage: pageInfo.pageSize, currentPage: pageInfo.currentPage, totalItems: pageInfo.totalEntity}">
+        <td>
+          <h5>{{depart.name}}</h5>
+          <div class="info" *ngIf="showDetails">
+            <i class="fa-users fas"></i>{{'table.dt.depart.totalStaff' | translate}}: {{depart.totalStaffs}}  <i class="fa-star fas"></i> {{'table.dt.depart.totalRecord'| translate}}: {{depart.totalRecords}}  <i class="fa-trophy fas"></i> {{'table.dt.depart.score' | translate}}: {{depart.rating}}
+          </div>
+        </td>
+        <td><button class="btn btn-primary" (click)="toTheDetails(depart)">{{'button.details' | translate}}</button></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+  </div>
+</div>

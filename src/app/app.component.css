@@ -1,0 +1,17 @@
+.success-image {
+  font-family: 'Roboto Mono', monospace;
+  text-align: center;
+  color: #35B336;
+  border-radius: 5px;
+}
+
+.success-image img {
+  max-height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-button {
+  margin-bottom: 5px;
+}

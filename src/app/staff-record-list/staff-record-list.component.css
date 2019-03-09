@@ -1,0 +1,26 @@
+.form-group {
+  display: inline-block;
+}
+
+.paginationCustom pagination-controls {
+  width: 70%;
+  margin: 0 auto;
+}
+
+/*table*/
+
+table td , button {
+  font-size: 15px;
+}
+
+table i {
+  margin-left: 20px;
+}
+
+table .info {
+  color: dimgray;
+}
+
+td {
+  vertical-align: middle;
+}

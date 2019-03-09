@@ -1,1 +1,264 @@
-/* You can add global styles to this file, and also import other style files */
+.navbar {
+  background-color: #e74c3c;
+}
+.navbar .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+  color: #ffbbbc;
+}
+.navbar .navbar-text {
+  color: #ecf0f1;
+}
+.navbar .navbar-text a {
+  color: #ffbbbc;
+}
+.navbar .navbar-text a:hover,
+.navbar .navbar-text a:focus {
+  color: #ffbbbc;
+}
+.navbar .navbar-nav .nav-link {
+  color: #ecf0f1;
+  border-radius: .25rem;
+  margin: 0 0.25em;
+}
+.navbar .navbar-nav .nav-link:not(.disabled):hover,
+.navbar .navbar-nav .nav-link:not(.disabled):focus {
+  color: #ffbbbc;
+}
+.navbar .navbar-nav .nav-item.active .nav-link,
+.navbar .navbar-nav .nav-item.active .nav-link:hover,
+.navbar .navbar-nav .nav-item.active .nav-link:focus,
+.navbar .navbar-nav .nav-item.show .nav-link,
+.navbar .navbar-nav .nav-item.show .nav-link:hover,
+.navbar .navbar-nav .nav-item.show .nav-link:focus {
+  color: #ffbbbc;
+  background-color: #c0392b;
+}
+.navbar .navbar-toggle {
+  border-color: #c0392b;
+}
+.navbar .navbar-toggle:hover,
+.navbar .navbar-toggle:focus {
+  background-color: #c0392b;
+}
+.navbar .navbar-toggle .navbar-toggler-icon {
+  color: #ecf0f1;
+}
+.navbar .navbar-collapse,
+.navbar .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar .navbar-link {
+  color: #ecf0f1;
+}
+.navbar .navbar-link:hover {
+  color: #ffbbbc;
+}
+
+@media (max-width: 575px) {
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ecf0f1;
+  }
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #ffbbbc;
+  }
+  .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #ffbbbc;
+    background-color: #c0392b;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ecf0f1;
+  }
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #ffbbbc;
+  }
+  .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #ffbbbc;
+    background-color: #c0392b;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ecf0f1;
+  }
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #ffbbbc;
+  }
+  .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #ffbbbc;
+    background-color: #c0392b;
+  }
+}
+
+@media (max-width: 1199px) {
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
+    color: #ecf0f1;
+  }
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+    color: #ffbbbc;
+  }
+  .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active {
+    color: #ffbbbc;
+    background-color: #c0392b;
+  }
+}
+
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
+  color: #ecf0f1;
+}
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+  color: #ffbbbc;
+}
+.navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
+  color: #ffbbbc;
+  background-color: #c0392b;
+}
+/* navbar custom */
+
+.nav-link{
+  position: relative;
+  color: #ecf0f1 !important;
+}
+
+.nav-link:hover {
+  color: #ecf0f1 !important;
+}
+
+.nav-link:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ecf0f1;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.nav-link:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.navbar-text {
+  padding-right: 10px;
+}
+
+
+/* header */
+
+header {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  color: #f8f8f8;
+  background-color: #333333;
+}
+
+header a {
+  color: #654597;
+  margin-right: 20px;
+
+}
+
+/* main */
+#main {
+  margin-top: 20px;
+}
+
+/* search */
+
+.card-header .row {
+  margin-top: 20px;
+}
+
+.dropdown-toggle {
+  background-color: white;
+  border: 1px solid #ced4da;
+}
+
+.showing-record {
+  font-weight: bold;
+  margin: 7px;
+  text-align: right;
+}
+
+.dropdown-menu {
+  background-color: white;
+  color: #654597;
+}
+
+.search-tool .btn-search {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+.search-tool {
+  border-radius: 7px;
+}
+
+
+
+/* side bar */
+.list-group .badge {
+  float: right;
+}
+
+.side-menu-header-button {
+  background-color: #e74c3c;
+  border: 1px solid #e74c3c;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.side-menu-header-button:hover {
+  background-color: #c0392b;
+  border: 1px solid #e74c3c;
+}
+
+.list-group .list-group-item:hover {
+  color: #e74c3c  ;
+  cursor: pointer;
+}
+
+.side-menu-item {
+  color: #333333;
+}
+
+.side-menu-item span {
+  background-color: #333333;
+  color: #ecf0f1;
+}
+
+.side-menu-item.active {
+  color: #ecf0f1;
+  background-color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+.side-menu-item.active:hover {
+  background-color: #c0392b;
+  color: #ecf0f1;
+}
+
+.side-menu-item.active > span {
+  background-color: #f8f8f8;
+  color: #333333;
+}
+
+

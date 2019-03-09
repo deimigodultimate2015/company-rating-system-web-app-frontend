@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-body">
+
+    <table class="table table-curved">
+      <thead>
+      <tr>
+        <th>{{'table.th.username' | translate}}</th>
+        <th>{{'table.th.name' | translate}}</th>
+        <th>Email</th>
+        <th>{{'table.th.status' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users | async">
+        <td>{{user.username}}</td>
+        <td>{{user.fullname}}</td>
+        <td>{{user.email}}</td>
+        <td *ngIf="user.active"><div class="badge badge-success">active</div></td>
+        <td *ngIf="!user.active"><div class="badge badge-danger">Inactive</div></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

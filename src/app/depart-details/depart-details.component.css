@@ -1,0 +1,40 @@
+.depart-rating {
+  text-align: center;
+  vertical-align: middle;
+  padding: 5px;
+}
+
+.depart-info {
+  padding: 5px;
+}
+
+.card-header {
+  background-color: #e74c3c;
+  color: #ecf0f1;
+  vertical-align: middle;
+}
+
+h4 {
+  text-align: center;
+}
+
+
+h4 {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+button {
+  margin: 5px;
+  float: right;
+}
+
+.card {
+  margin-bottom: 15px;
+}
+
+.group-button-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

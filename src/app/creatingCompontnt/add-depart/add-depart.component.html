@@ -1,0 +1,45 @@
+<div *ngIf="success; else addForm" class="success-div">
+
+  <div class="card">
+    <div class="card-body success-image">
+      <h3 *ngIf="!departDetails.id">Depart was adding successful, you can upload image at edit staff.</h3>
+      <h3 *ngIf="departDetails.id">Depart was Update successful</h3>
+      <button *ngIf="!departDetails.id" class="btn btn-success" (click)="addMore()">Add more</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #addForm>
+  <div class="card">
+    <div class="card-header">
+      <span *ngIf="!departDetails.id">{{'sidebar.new.depart' | translate}}</span>
+      <span *ngIf="departDetails.id">{{'sidebar.depart' | translate}} {{departDetails.id}}</span>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+        <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="departDetails.name" minlength="15" name="name" #name="ngModel" placeholder="{{'depart.details.departName' | translate}}" required>
+          <div class="text text-danger" *ngIf="name.invalid">
+            <div *ngIf="name.errors.required">Depart name is required</div>
+            <div *ngIf="name.errors.minlength">Depart name length must at least 15 characters</div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="error">
+          <div class="col">
+            <div class="alert alert-danger">
+              <strong>Add failed!</strong> {{message}}.
+            </div>
+          </div>
+        </div>
+
+        <div class="row group-button-custom">
+          <button type="submit" class="btn btn-success btn-group-custom">{{'sidebar.new.depart' | translate}}</button>
+          <button type="reset" class="btn btn-secondary btn-group-custom">{{'button.reset' | translate}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</ng-template>

@@ -1,0 +1,75 @@
+.depart-rating {
+  text-align: center;
+  vertical-align: middle;
+  padding: 5px;
+}
+
+.depart-info {
+  padding: 5px 0px;
+}
+
+.card-header {
+  background-color: #e74c3c;
+  color: #ecf0f1;
+  vertical-align: middle;
+}
+
+hr {
+  margin: 10px 0px;
+}
+
+.btn-upload-img {
+  margin-top: 5px;
+  clear: both;
+  width: 100%;
+  margin-right: 5px;
+}
+
+h4 {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.image-card-body {
+  padding: 5px;
+}
+
+.card-footer {
+  text-align: center;
+  height: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+.card {
+  margin-bottom: 15px;
+}
+
+.group-button-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-group-custom {
+  margin: 5px;
+}
+
+.success-image {
+  background-color: #333333;
+  font-family: 'Roboto Mono', monospace;
+  text-align: center;
+  color: #35B336;
+  border-radius: 5px;
+}
+
+.success-image img {
+  max-height: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+

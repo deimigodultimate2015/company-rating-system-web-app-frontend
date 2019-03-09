@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <div class="alert alert-danger" *ngIf="updateFailed">{{updateMessage}}</div>
+        <div class="alert alert-success" *ngIf="updateSuccess">{{updateMessage}}</div>
+      </div>
+    </div>
+    <table class="table table-curved">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>{{'table.th.name' | translate}}</th>
+        <th>Email</th>
+        <th>{{'table.th.level' | translate}}</th>
+        <th>{{'table.th.status' | translate}}</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let staff of staffs | async">
+        <td>{{staff.id}}</td>
+        <td>{{staff.name}}</td>
+        <td>{{staff.email}}</td>
+        <td>{{staff.level}}</td>
+        <td *ngIf="staff.active"><div class="badge badge-success">active</div></td>
+        <td *ngIf="!staff.active"><div class="badge badge-danger">Inactive</div></td>
+        <td><button class="btn btn-danger btn-sm" (click)="dismissStaff(staff.id)">{{'button.depart.dismiss' | translate}}</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
